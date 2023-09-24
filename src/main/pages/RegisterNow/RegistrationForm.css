@@ -13,7 +13,7 @@
 }
 
 #res_main {
-  background-color: rgb(197, 205, 171);
+  background-color: rgb(142, 189, 217);
   width: 70vw;
   display: grid;
   grid-template-columns: 1fr;
@@ -42,7 +42,7 @@
   margin-top: 2vw;
   margin-left: auto;
   margin-right: auto;
-  background-color: #3d4a40;
+  background-color: rgb(29,85,174);
   color: white;
   width: 20vw;
 }
