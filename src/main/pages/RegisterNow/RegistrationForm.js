@@ -3,21 +3,24 @@ import "./RegistrationForm.css";
 import { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/footer/Footer";
+import axios from "axios";
+import { useHistory } from "react-router";
 
-const RegistrationForm = () => {
-  const [name, setName] = useState("PLease Enter Full Name");
+const RegistrationForm = (props) => {
+  const [name, setName] = useState("");
   const [isName, setIsName] = useState(false);
   const [isNameFocus, setIsNameFocus] = useState(true);
-  const [email, setEmail] = useState("Please Enter a valid Email ID");
+  const [email, setEmail] = useState("");
   const [isEmail, setIsEmail] = useState(false);
   const [isEmailFocus, setIsEmailFocus] = useState(true);
-  const [phoneNumber, setPhoneNumber] = useState("PLease Enter Full Name");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [isPhoneNumber, setIsPhoneNumber] = useState(false);
   const [isPhoneNumberFocus, setIsPhoneNumberFocus] = useState(true);
-  const [address, setAddress] = useState("PLease Enter Full Name");
+  const [address, setAddress] = useState("");
   const [isAddress, setIsAddress] = useState(false);
   const [isAddressFocus, setIsAddressFocus] = useState(true);
-
+  const validForm = isName && isEmail && isAddress && isPhoneNumber;
+  // const history = useHistory();
   const onNameChangeHandler = (e) => {
     setName(e.target.value);
     setIsName(e.target.value.length > 3 ? true : false);
@@ -61,22 +64,71 @@ const RegistrationForm = () => {
   const email_blur = () => {
     setIsEmailFocus(false);
   };
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
 
-  const handleSubmit = (e) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "127.0.0.1:8000/api/register/",
+  //       formData
+  //     );
+  //     // Handle the response from the server as needed
+  //     console.log("Response:", response.data);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // }
+  function getCsrfTokenFromCookie() {
+    // Split the cookies into an array
+    const cookies = document.cookie.split(";");
+
+    // Loop through the cookies to find the CSRF token cookie
+    for (const cookie of cookies) {
+      const [name, value] = cookie.trim().split("=");
+      if (name === "csrftoken") {
+        // Return the value of the csrf token cookie
+        return value;
+      }
+    }
+
+    // If the CSRF token cookie is not found, return null or handle the error as needed
+    return null;
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    isName && isEmail && isAddress && isPhoneNumber
-      ? finalFunction()
-      : alert("Please Fill All The Fields Correctly");
-  };
 
-  const finalFunction = () => {
     const formData = {
       name: name,
       email: email,
       phoneNumber: phoneNumber,
       address: address,
     };
-    console.log(formData);
+    // const csrfToken = document.querySelector(
+    //   "input[name=csrfmiddlewaretoken]"
+    // ).value;
+
+    // Now you can include `csrfToken` in your fetch request headers as shown previously.
+
+    try {
+      const response = await fetch("/api/register/", {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCsrfTokenFromCookie(),
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.status === 201) {
+      } else {
+      }
+    } catch (error) {}
+
+    props.onSubmitForm(formData);
+    setName(" ");
+    setEmail(" ");
+    setAddress(" ");
+    setPhoneNumber(" ");
   };
 
   return (
@@ -106,7 +158,8 @@ const RegistrationForm = () => {
               className="res_ip"
               onChange={onNameChangeHandler}
               onBlur={focusName}
-              placeholder={name}
+              value={name}
+              // placeholder={name}
             />
             {!isName && !isNameFocus && (
               <p className="error_msg"> * Reuired Full Name</p>
