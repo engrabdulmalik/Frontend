@@ -18,7 +18,9 @@ const RegistrationForm = (props) => {
   const [isAddress, setIsAddress] = useState(false);
   const [isAddressFocus, setIsAddressFocus] = useState(true);
   const [checked, setChecked] = useState("");
-  const [courses, setCourses] = useState("");
+  const [courses, setCourses] = useState("Full Stack Web Development");
+  const [lecture1, setLecture1] = useState("Not Interested");
+  const [lecture2, setLecture2] = useState("Not Interested");
 
   // const validForm = isName && isEmail && isAddress && isPhoneNumber;
 
@@ -28,8 +30,12 @@ const RegistrationForm = (props) => {
   };
 
   const onCheckedChangeHandler = (e) => {
-    if (e.target.checked) {
+    if (e.target.checked && e.target.name === "weekday") {
       setChecked([...checked, e.target.value]);
+      setLecture2("Weekday");
+    } else if (e.target.checked && e.target.name === "weekend") {
+      setChecked([...checked, e.target.value]);
+      setLecture1("Weekend");
     } else {
       setChecked(checked.filter((item) => item !== e.target.value));
     }
@@ -37,7 +43,6 @@ const RegistrationForm = (props) => {
 
   const onCoursesChangeHandler = (e) => {
     setCourses(e.target.value);
-    setIsCourse(e.target.value.length > 0 ? true : false);
   };
 
   const focusName = () => {
@@ -104,7 +109,8 @@ const RegistrationForm = (props) => {
       phoneNumber: phoneNumber,
       address: address,
       courses: courses,
-      lecture: checked,
+      lecture1: lecture1,
+      lecture2: lecture2,
     };
 
     try {
@@ -247,6 +253,7 @@ const RegistrationForm = (props) => {
               value={checked}
               type="checkbox"
               id="res-timings"
+              name="weekday"
               onChange={onCheckedChangeHandler}
             />
             <span>Weekday (6PM - 9PM)</span>
@@ -256,6 +263,7 @@ const RegistrationForm = (props) => {
               value={checked}
               type="checkbox"
               id="res-timings"
+              name="weekend"
               onChange={onCheckedChangeHandler}
             />
             <span>Weekend (2AM - 2PM)</span>
