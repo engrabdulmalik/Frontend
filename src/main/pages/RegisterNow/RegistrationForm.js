@@ -3,8 +3,6 @@ import "./RegistrationForm.css";
 import { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/footer/Footer";
-import axios from "axios";
-import { useHistory } from "react-router";
 
 const RegistrationForm = (props) => {
   const [name, setName] = useState("");
@@ -19,11 +17,27 @@ const RegistrationForm = (props) => {
   const [address, setAddress] = useState("");
   const [isAddress, setIsAddress] = useState(false);
   const [isAddressFocus, setIsAddressFocus] = useState(true);
-  const validForm = isName && isEmail && isAddress && isPhoneNumber;
-  // const history = useHistory();
+  const [checked, setChecked] = useState("");
+  const [courses, setCourses] = useState("");
+
+  // const validForm = isName && isEmail && isAddress && isPhoneNumber;
+
   const onNameChangeHandler = (e) => {
     setName(e.target.value);
     setIsName(e.target.value.length > 3 ? true : false);
+  };
+
+  const onCheckedChangeHandler = (e) => {
+    if (e.target.checked) {
+      setChecked([...checked, e.target.value]);
+    } else {
+      setChecked(checked.filter((item) => item !== e.target.value));
+    }
+  };
+
+  const onCoursesChangeHandler = (e) => {
+    setCourses(e.target.value);
+    setIsCourse(e.target.value.length > 0 ? true : false);
   };
 
   const focusName = () => {
@@ -64,20 +78,7 @@ const RegistrationForm = (props) => {
   const email_blur = () => {
     setIsEmailFocus(false);
   };
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
 
-  //   try {
-  //     const response = await axios.post(
-  //       "127.0.0.1:8000/api/register/",
-  //       formData
-  //     );
-  //     // Handle the response from the server as needed
-  //     console.log("Response:", response.data);
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // }
   function getCsrfTokenFromCookie() {
     // Split the cookies into an array
     const cookies = document.cookie.split(";");
@@ -102,12 +103,9 @@ const RegistrationForm = (props) => {
       email: email,
       phoneNumber: phoneNumber,
       address: address,
+      courses: courses,
+      lecture: checked,
     };
-    // const csrfToken = document.querySelector(
-    //   "input[name=csrfmiddlewaretoken]"
-    // ).value;
-
-    // Now you can include `csrfToken` in your fetch request headers as shown previously.
 
     try {
       const response = await fetch("/api/register/", {
@@ -119,9 +117,6 @@ const RegistrationForm = (props) => {
         },
         body: JSON.stringify(formData),
       });
-      if (response.status === 201) {
-      } else {
-      }
     } catch (error) {}
 
     props.onSubmitForm(formData);
@@ -165,7 +160,24 @@ const RegistrationForm = (props) => {
               <p className="error_msg"> * Reuired Full Name</p>
             )}
           </div>
+          <label htmlFor="res-email" style={{ fontWeight: "bold" }}>
+            {" "}
+            Email:{" "}
+          </label>
 
+          <div>
+            <input
+              type="email"
+              id="res-email"
+              className="res_ip"
+              onChange={onEmailChangeHandler}
+              onBlur={email_blur}
+              placeholder={email}
+            />
+            {!isEmail && !isEmailFocus && (
+              <p className="error_msg"> * Please Enter a valid Email</p>
+            )}
+          </div>
           <label htmlFor="res-mobnum" style={{ fontWeight: "bold" }}>
             {" "}
             Mobile Number:{" "}
@@ -204,25 +216,50 @@ const RegistrationForm = (props) => {
             )}
           </div>
 
-          <label htmlFor="res-email" style={{ fontWeight: "bold" }}>
+          <label htmlFor="res-courses" style={{ fontWeight: "bold" }}>
             {" "}
-            Email:{" "}
+            Select Course:{" "}
           </label>
-
           <div>
-            <input
-              type="email"
-              id="res-email"
+            <select
               className="res_ip"
-              onChange={onEmailChangeHandler}
-              onBlur={email_blur}
-              placeholder={email}
-            />
-            {!isEmail && !isEmailFocus && (
-              <p className="error_msg"> * Please Enter a valid Email</p>
-            )}
+              id="res-courses"
+              value={courses}
+              onChange={onCoursesChangeHandler}
+            >
+              <option value="Full Stack Web Development">
+                Full Stack Web Development
+              </option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Cloud Computing">Cloud Computing</option>
+              <option value="Programming in Python">
+                Programming in Python
+              </option>
+            </select>
           </div>
 
+          <label htmlFor="res-timings" style={{ fontWeight: "bold" }}>
+            {" "}
+            Lecture Selection:{" "}
+          </label>
+          <div>
+            <input
+              value={checked}
+              type="checkbox"
+              id="res-timings"
+              onChange={onCheckedChangeHandler}
+            />
+            <span>Weekday (6PM - 9PM)</span>
+          </div>
+          <div>
+            <input
+              value={checked}
+              type="checkbox"
+              id="res-timings"
+              onChange={onCheckedChangeHandler}
+            />
+            <span>Weekend (2AM - 2PM)</span>
+          </div>
           <div style={{ marginLeft: "auto", marginRight: "auto" }}>
             <button
               type="submit"
