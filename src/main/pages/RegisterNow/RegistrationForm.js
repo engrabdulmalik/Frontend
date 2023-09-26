@@ -166,7 +166,7 @@ const RegistrationForm = (props) => {
               onChange={onNameChangeHandler}
               onBlur={focusName}
               value={name}
-              // placeholder={name}
+              placeholder="Please Enter Full Name"
             />
             {!isName && !isNameFocus && (
               <p className="error_msg"> * Required Full Name</p>
@@ -184,7 +184,7 @@ const RegistrationForm = (props) => {
               className="res_ip"
               onChange={onEmailChangeHandler}
               onBlur={email_blur}
-              placeholder={email}
+              placeholder="Please Enter Email Address example@example.com"
             />
             {!isEmail && !isEmailFocus && (
               <p className="error_msg"> * Please Enter a valid Email</p>
@@ -202,7 +202,7 @@ const RegistrationForm = (props) => {
               className="res_ip"
               onChange={onPhoneNumberChangeHandler}
               onBlur={focusPhoneNumber}
-              placeholder={phoneNumber}
+              placeholder="Please Enter Mobile Number e.g. 03331234567"
             />
             {!isPhoneNumber && !isPhoneNumberFocus && (
               <p className="error_msg"> * Required Mobile Number</p>
@@ -221,7 +221,7 @@ const RegistrationForm = (props) => {
               className="res_ip"
               onChange={onAddressChangeHandler}
               onBlur={focusAddress}
-              placeholder={address}
+              placeholder="Please Enter Address"
             />
             {!isAddress && !isAddressFocus && (
               <p className="error_msg"> * Required Full Address</p>
