@@ -1,13 +1,12 @@
-.ins1{
+.hc1{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 0;
+    margin-bottom: 30px;
     color:#1d55ae;
 }
 
-.ins2{
+.hc2{
     display: block;
     font-size: 3vw;
     text-align: center;
@@ -16,16 +15,16 @@
 
 @media screen and (max-width: 660px) {
 
-    .ins1{
+    .hc1{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 50px;
+        padding-top: 30px;
         margin-bottom: 50px;
         color:#1d55ae;
     }
     
-    .ins2{
+    .hc2{
         display: block;
         font-size: 5vw;
         text-align: center;

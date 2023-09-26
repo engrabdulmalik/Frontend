@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+    
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+.courses1{
+    display: grid;
+    grid-template-rows: 70px 4fr 0.75fr;
+}
+
+.cp1{
+    display: grid;
+    grid-template-rows: 0.5fr 4fr;
+    max-width: 90vw;
+    margin: auto;
+}
+.cp2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    color: #1d55ae;
+    font-weight: 700;
+}
+.cp3{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.cp4{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    border-radius: 35px;
+    border: 2px solid rgb(236, 236, 236);
+    
+}
+
+.cp5{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.cp51{
+    display: flex;
+    color: #1d55ae;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    font-size: 3vw;
+}
+
+.cp52{
+    text-align: center;
+    font-size: medium;
+}

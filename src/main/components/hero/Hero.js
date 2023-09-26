@@ -16,13 +16,12 @@ const Hero = () => {
           <div className="hero221">
             <div className="hero2211">
               <div>
-                {" "}
                 <FaHandsHelping className="hero9" />
               </div>
 
               <div>
                 <span className="hero51">A</span>
-                <span>SSIT</span>
+                <span>SSIST</span>
               </div>
             </div>
           </div>

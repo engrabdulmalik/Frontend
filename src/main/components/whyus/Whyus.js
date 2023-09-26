@@ -34,7 +34,7 @@ const Whyus = () => {
             <GiFaceToFace className="w311icon" />
           </div>
           <div className="w312">
-            <p>Face to Face sessions with Experts from industry and academia</p>
+            <p>W </p>
           </div>
         </div>
         <div className="w31">
@@ -50,7 +50,7 @@ const Whyus = () => {
             <GiFaceToFace className="w311icon" />
           </div>
           <div className="w312">
-            <p>Face to Face sessions with industry and academia</p>
+            <p>Build your portfolio with real world project from Industry</p>
           </div>
         </div>
         <div className="w31">
@@ -68,7 +68,7 @@ const Whyus = () => {
             <GiFaceToFace className="w311icon" />
           </div>
           <div className="w312">
-            <p>Face to Face sessions with Experts from industry and academia</p>
+            <p>Interview Prepration and Guidance</p>
           </div>
         </div>
       </div>

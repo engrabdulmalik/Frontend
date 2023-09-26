@@ -139,8 +139,7 @@ const RegistrationForm = (props) => {
   };
 
   return (
-    <>
-      <Header></Header>
+    <div>
       <div id="res_main">
         <h1>Register NOW</h1>
 
@@ -206,6 +205,9 @@ const RegistrationForm = (props) => {
             />
             {!isPhoneNumber && !isPhoneNumberFocus && (
               <p className="error_msg"> * Required Mobile Number</p>
+            )}
+            {isPhoneNumber && isPhoneNumberFocus && phoneNumber.length > 11 && (
+              <p className="error_msg"> * Enter Mobile Number as specfied</p>
             )}
           </div>
 
@@ -285,8 +287,7 @@ const RegistrationForm = (props) => {
           </div>
         </form>
       </div>
-      <Footer></Footer>
-    </>
+    </div>
   );
 };
 

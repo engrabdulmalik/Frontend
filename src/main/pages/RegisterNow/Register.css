@@ -1,0 +1,11 @@
+.reg1 {
+  display: grid;
+  grid-template-rows: 75px 3fr 1.5fr;
+}
+
+.reg2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}

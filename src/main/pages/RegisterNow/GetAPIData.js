@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
-const GetAPIData = () => {
+const GetAPIData = (props) => {
   const [data, setData] = useState("");
   useEffect(() => {
-    fetch("/api/register")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log("json", json);
-        setData((prevdata) => [...prevdata, json]);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    // Simulate fetching data or some other asynchronous operation
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/register/");
+        const data = await response.json();
+
+        // Send data to the parent component using the callback
+        props.showStudentData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
-  return (
-    <div>
-      <p>{console.log(data)}</p>
-    </div>
-  );
+
+  return <div></div>;
 };
 
 export default GetAPIData;

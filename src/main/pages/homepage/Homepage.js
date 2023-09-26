@@ -4,7 +4,7 @@ import Hero from "../../components/hero/Hero";
 import Footer from "../../components/footer/Footer";
 import Partner from "../../components/partners/Partner";
 import Whyus from "../../components/whyus/Whyus";
-import Cslider from "../../components/cslider/Cslider";
+import HomeCourse from "../../components/course_slider/HomeCourse";
 import Instructor from "../../components/instructor/Instructor";
 const Homepage = () => {
   return (
@@ -23,10 +23,10 @@ const Homepage = () => {
           <Whyus />
         </div>
         <div className="home23">
-          <Cslider />
+          <HomeCourse />
         </div>
         <div className="home24">
-          <Instructor></Instructor>
+          <Instructor />
         </div>
       </div>
       <div>

@@ -1,6 +1,4 @@
-@media screen and (mix-width: 661px) {
-/*
-.hide1{
+/*.hide1{
     opacity: 0;
 }
 .show1{
@@ -8,6 +6,7 @@
     transition: 0.25s ease-in;
     background: rgb(195, 218, 255);
 }*/
+
 .w1{
     display: grid;
     grid-template-rows: 1fr 4fr;
@@ -47,7 +46,8 @@
     border-radius: 10px;
     display: grid;
     grid-template-rows: 2fr 3fr;
-    max-height: 50%;
+    max-height: 45%;
+    background-color: #b6d2ff;
 }
 
 .w311{
@@ -78,16 +78,92 @@
     color:#fff;
     background: #1d55ae;
 }
+.w3121 {
+    text-decoration:double;
+}
 
+.w311icon:hover + .w3121 {
+   background:#fff;
 }
 
 
 @media screen and (max-width: 660px) {
 
-    .w311icon{
-        background: green;
-        font-size: 500px;
+
+    .w1{
+        display: grid;
+        grid-template-rows: 1fr 4fr;
+        row-gap: 5px;
         
+    }
+    
+    .w2{
+        color:#1d55ae;
+        margin-bottom: 10px;
+    
+    }
+    .w21{
+        display: block;
+        font-size: 5vw;
+        text-align: center;
+        margin: 0;
+    }
+    .w22{
+        display: block;
+        font-size: 2.5vw;
+        text-align: center;
+        margin: 0;
+    }
+    .w3{
+        
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        
+    }
+    .w31{
+        flex: 1 0 33%;
+        max-width: 30vw;
+        /*background: rgb(195, 218, 255);*/
+        border-radius: 10px;
+        display: grid;
+        grid-template-rows: 2fr 3fr;
+        max-height: 50%;
+    }
+    
+    .w311{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .w312{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        font-size: 2.5vw;
+        max-width: 100%;
+        
+    }
+    
+    .w312 p{
+        margin: 0;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    
+    .w311icon{
+        color:#1d55ae;
+        font-size: 75px;
+        border-radius: 10px;
+    }
+
+    .w311icon:hover {
+        color:#fff;
+        background: #1d55ae;
     }
 
 }
