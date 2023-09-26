@@ -7,8 +7,6 @@ const Register = () => {
   const submitFormHandler = (formdata) => {
     setFormData((prevFormData) => [...prevFormData, formdata]);
   };
-
-  console.log(formData);
   return (
     <div>
       <RegistrationForm onSubmitForm={submitFormHandler} />

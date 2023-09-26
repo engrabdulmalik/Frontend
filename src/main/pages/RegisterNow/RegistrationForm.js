@@ -22,8 +22,6 @@ const RegistrationForm = (props) => {
   const [lecture1, setLecture1] = useState("Not Interested");
   const [lecture2, setLecture2] = useState("Not Interested");
 
-  // const validForm = isName && isEmail && isAddress && isPhoneNumber;
-
   const onNameChangeHandler = (e) => {
     setName(e.target.value);
     setIsName(e.target.value.length > 3 ? true : false);
@@ -101,35 +99,43 @@ const RegistrationForm = (props) => {
     return null;
   }
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    const isLecture =
+      lecture1 !== "Not Interested" || lecture2 !== "Not Interested"
+        ? true
+        : false;
+    if (isName && isEmail && isAddress && isPhoneNumber && isLecture) {
+      e.preventDefault();
 
-    const formData = {
-      name: name,
-      email: email,
-      phoneNumber: phoneNumber,
-      address: address,
-      courses: courses,
-      lecture1: lecture1,
-      lecture2: lecture2,
-    };
+      const formData = {
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        address: address,
+        courses: courses,
+        lecture1: lecture1,
+        lecture2: lecture2,
+      };
 
-    try {
-      const response = await fetch("/api/register/", {
-        credentials: "include",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCsrfTokenFromCookie(),
-        },
-        body: JSON.stringify(formData),
-      });
-    } catch (error) {}
+      try {
+        const response = await fetch("/api/register/", {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCsrfTokenFromCookie(),
+          },
+          body: JSON.stringify(formData),
+        });
+      } catch (error) {}
 
-    props.onSubmitForm(formData);
-    setName(" ");
-    setEmail(" ");
-    setAddress(" ");
-    setPhoneNumber(" ");
+      props.onSubmitForm(formData);
+      setName(" ");
+      setEmail(" ");
+      setAddress(" ");
+      setPhoneNumber(" ");
+    } else {
+      alert("All fields Required Kindly fill them to proceed");
+    }
   };
 
   return (
@@ -163,7 +169,7 @@ const RegistrationForm = (props) => {
               // placeholder={name}
             />
             {!isName && !isNameFocus && (
-              <p className="error_msg"> * Reuired Full Name</p>
+              <p className="error_msg"> * Required Full Name</p>
             )}
           </div>
           <label htmlFor="res-email" style={{ fontWeight: "bold" }}>
@@ -199,7 +205,7 @@ const RegistrationForm = (props) => {
               placeholder={phoneNumber}
             />
             {!isPhoneNumber && !isPhoneNumberFocus && (
-              <p className="error_msg"> * Reuired Full Name</p>
+              <p className="error_msg"> * Required Mobile Number</p>
             )}
           </div>
 
@@ -218,7 +224,7 @@ const RegistrationForm = (props) => {
               placeholder={address}
             />
             {!isAddress && !isAddressFocus && (
-              <p className="error_msg"> * Reuired Full Address</p>
+              <p className="error_msg"> * Required Full Address</p>
             )}
           </div>
 
@@ -262,11 +268,11 @@ const RegistrationForm = (props) => {
             <input
               value={checked}
               type="checkbox"
-              id="res-timings"
+              id="res-timings2"
               name="weekend"
               onChange={onCheckedChangeHandler}
             />
-            <span>Weekend (2AM - 2PM)</span>
+            <span>Weekend (11AM - 2PM)</span>
           </div>
           <div style={{ marginLeft: "auto", marginRight: "auto" }}>
             <button
