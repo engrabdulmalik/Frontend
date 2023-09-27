@@ -19,8 +19,8 @@ const RegistrationForm = (props) => {
   const [isAddressFocus, setIsAddressFocus] = useState(true);
   const [checked, setChecked] = useState("");
   const [courses, setCourses] = useState("Full Stack Web Development");
-  const [lecture1, setLecture1] = useState("Not Interested");
-  const [lecture2, setLecture2] = useState("Not Interested");
+  const [lecture1, setLecture1] = useState("No");
+  const [lecture2, setLecture2] = useState("No");
 
   const onNameChangeHandler = (e) => {
     setName(e.target.value);
@@ -30,10 +30,10 @@ const RegistrationForm = (props) => {
   const onCheckedChangeHandler = (e) => {
     if (e.target.checked && e.target.name === "weekday") {
       setChecked([...checked, e.target.value]);
-      setLecture2("Weekday");
+      setLecture2("Yes");
     } else if (e.target.checked && e.target.name === "weekend") {
       setChecked([...checked, e.target.value]);
-      setLecture1("Weekend");
+      setLecture1("Yes");
     } else {
       setChecked(checked.filter((item) => item !== e.target.value));
     }
@@ -99,10 +99,7 @@ const RegistrationForm = (props) => {
     return null;
   }
   const handleSubmit = async (e) => {
-    const isLecture =
-      lecture1 !== "Not Interested" || lecture2 !== "Not Interested"
-        ? true
-        : false;
+    const isLecture = lecture1 !== "No" || lecture2 !== "No" ? true : false;
     if (isName && isEmail && isAddress && isPhoneNumber && isLecture) {
       e.preventDefault();
 

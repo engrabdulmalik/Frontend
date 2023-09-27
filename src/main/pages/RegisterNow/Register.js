@@ -26,7 +26,6 @@ const Register = () => {
           <Footer />
         </div>
       </div>
-      <StudentData />
     </div>
   );
 };
