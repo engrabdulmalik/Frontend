@@ -2,32 +2,27 @@ import "./ShowStudentData.css";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import Swal from "sweetalert2";
-// import * as FileSaver from "file-saver";
-// import XLSX from "sheetjs-style";
+import * as FileSaver from "file-saver";
+import XLSX from "sheetjs-style";
 const ShowStudentData = (props) => {
+  const fileData = props.StudentData.map((item) => item.map((items) => items));
   const componentPDF = useRef();
-
-  //   const fileData = [
-  //     { name: "Abdul" },
-  //     { email: "abdul@gmail.com" },
-  //     { address: "abc" },
-  //   ];
   const today = new Date();
   const month = today.getMonth() + 1;
   const year = today.getFullYear();
   const date = today.getDate();
   const fileName = month + "/" + date + "/" + year;
-  //   const fileType =
-  //     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8";
-  //   const fileExtension = ".xlsx";
+  const fileType =
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8";
+  const fileExtension = ".xlsx";
 
-  //   const exportToExcel = async () => {
-  //     const ws = XLSX.utils.json_to_sheet(fileData);
-  //     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-  //     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-  //     const data = new Blob([excelBuffer], { type: fileType });
-  //     FileSaver.saveAs(data, fileName + fileExtension);
-  //   };
+  const exportToExcel = async () => {
+    const ws = XLSX.utils.json_to_sheet(fileData);
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
+  };
   const generatePDF = useReactToPrint({
     content: () => componentPDF.current,
     documentTitle: fileName,
@@ -46,6 +41,14 @@ const ShowStudentData = (props) => {
       >
         <button className="res_but" onClick={generatePDF}>
           Export to PDF
+        </button>
+      </div>
+      <div
+        className="text-center"
+        style={{ marginLeft: "auto", marginRight: "auto" }}
+      >
+        <button className="res_but" onClick={(e) => exportToExcel(fileName)}>
+          Export to EXCEL
         </button>
       </div>
       <div ref={componentPDF} style={{ width: "100%" }}>
