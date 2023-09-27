@@ -6,11 +6,6 @@ import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 const ShowStudentData = (props) => {
   const fileData = props.StudentData.map((item) => item.map((items) => items));
-  // const fileData = [
-  //   { name: "Abdul", email: "abdul@gmail.com", address: "Abc" },
-  //   { name: "Abdul", email: "abdul@gmail.com", address: "Abc" },
-  //   { name: "Abdul", email: "abdul@gmail.com", address: "Abc" },
-  // ];
   const componentPDF = useRef();
   const today = new Date();
   const month = today.getMonth() + 1;
